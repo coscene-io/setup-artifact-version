@@ -1,11 +1,16 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'setup-artifact-version'
+description: 'Set up artifact version'
+branding:
+  icon: git-commit
+  color: blue
+author: 'coscene.io'
 inputs:
-  milliseconds: # change this
-    required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  customizedVersion: # change this
+    required: false
+    description: 'Customized version to override the default implementation with tag/commitId'
+outputs:
+  version:
+    description: 'The version of the artifact'
 runs:
   using: 'node16'
   main: 'dist/index.js'
