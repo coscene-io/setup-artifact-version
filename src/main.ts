@@ -1,16 +1,33 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import {setupVersion} from './version'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
-
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    const githubSha = process.env.GITHUB_SHA
+    const githubRef = process.env.GITHUB_REF
+    const githubRefType = process.env.GITHUB_REF_TYPE
+    const customizedVersion = core.getInput('customizedVersion', {
+      required: false
+    })
+    if (!githubSha || !githubRef || !githubRefType) {
+      core.setFailed(
+        'GITHUB_SHA, GITHUB_REF, GITHUB_REF_TYPE is unexpectedly empty'
+      )
+    }
+    const version = setupVersion(
+      customizedVersion,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      githubRefType!,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      githubRef!,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      githubSha!
+    )
+    if (!version) {
+      core.setFailed('version is unexpectedly empty')
+    }
+    core.setOutput('version', version)
+    return
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
