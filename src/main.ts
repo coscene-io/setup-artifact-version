@@ -13,15 +13,13 @@ async function run(): Promise<void> {
       core.setFailed(
         'GITHUB_SHA, GITHUB_REF, GITHUB_REF_TYPE is unexpectedly empty'
       )
+      return
     }
     const version = setupVersion(
       customizedVersion,
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      githubRefType!,
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      githubRef!,
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      githubSha!
+      githubRefType,
+      githubRef,
+      githubSha
     )
     if (!version) {
       core.setFailed('version is unexpectedly empty')
@@ -29,7 +27,9 @@ async function run(): Promise<void> {
     core.setOutput('version', version)
     return
   } catch (error) {
-    if (error instanceof Error) core.setFailed(error.message)
+    if (error instanceof Error) {
+      core.setFailed(error.message)
+    }
   }
 }
 

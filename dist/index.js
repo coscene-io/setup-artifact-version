@@ -52,14 +52,9 @@ function run() {
             });
             if (!githubSha || !githubRef || !githubRefType) {
                 core.setFailed('GITHUB_SHA, GITHUB_REF, GITHUB_REF_TYPE is unexpectedly empty');
+                return;
             }
-            const version = (0, version_1.setupVersion)(customizedVersion, 
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            githubRefType, 
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            githubRef, 
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            githubSha);
+            const version = (0, version_1.setupVersion)(customizedVersion, githubRefType, githubRef, githubSha);
             if (!version) {
                 core.setFailed('version is unexpectedly empty');
             }
@@ -67,8 +62,9 @@ function run() {
             return;
         }
         catch (error) {
-            if (error instanceof Error)
+            if (error instanceof Error) {
                 core.setFailed(error.message);
+            }
         }
     });
 }
