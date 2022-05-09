@@ -1,7 +1,7 @@
 {
   "name": "setup-artifact-version",
-  "version": "0.1.0",
-  "private": true,
+  "version": "v0.1.0",
+  "private": false,
   "description": "Set up artifact version",
   "main": "lib/main.js",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/coscene-io/setup-artifact-version.git"
   },
   "keywords": [
     "actions",
