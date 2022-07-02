@@ -2,12 +2,12 @@
 
 ## Usage
 
-### Use $GITHUB_SHA or $GITHUB_REF as artifact version
+### Use $GITHUB_SHA or $GITHUB_REF as an artifact version
 
 ```yaml
 steps:
   - uses: actions/checkout@v3
-  - uses: coscene-io/setup-artifact-version@v0.1.0
+  - uses: coscene-io/setup-artifact-version@v1.0.0
     id: setup_artifact_version
   - run: |
       echo ${{ steps.setup_artifact_version.outputs.version }}
@@ -20,7 +20,7 @@ It s really useless feature, lol.
 ```yaml
 steps:
   - uses: actions/checkout@v3
-  - uses: coscene-io/setup-artifact-version@v0.1.0
+  - uses: coscene-io/setup-artifact-version@v1.0.0
     id: setup_artifact_version
     with:
       customizedVersion: "test-version-1"
@@ -35,7 +35,7 @@ steps:
 ```yaml
 steps:
   - uses: actions/checkout@v3
-  - uses: coscene-io/setup-artifact-version@v0.2.0
+  - uses: coscene-io/setup-artifact-version@TBD
     id: setup_artifact_version
     with:
       commitVersionTemplate: "v{YYYYMMDD}-{ABBREV}"

@@ -1,6 +1,6 @@
 {
   "name": "setup-artifact-version",
-  "version": "v0.1.1",
+  "version": "v1.0.0",
   "private": false,
   "description": "Set up artifact version",
   "main": "lib/main.js",
