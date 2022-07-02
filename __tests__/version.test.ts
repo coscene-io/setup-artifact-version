@@ -101,11 +101,11 @@ describe('version', () => {
       'v1.1.1',
       'v100.100.100-rc100',
       'v100.100.100-hotfix100',
-      `v${moment().utc().format('YYYYMMDD').toString()}ffac537`,
+      `v${moment().utc().format('YYYYMMDD').toString()}-ffac537`,
       'override',
       'override',
       'v100.100.100-hotfix100',
-      `v${moment().utc().format('YYYYMMDD').toString()}ffac537`
+      `v${moment().utc().format('YYYYMMDD').toString()}-ffac537`
     ]
     expect(expectResult.length).toEqual(paramsToTest.length)
 
