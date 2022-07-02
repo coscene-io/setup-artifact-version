@@ -110,7 +110,7 @@ function getVersionFromCommitSha(sha) {
     if (!sha || sha.trim().length === 0) {
         return undefined;
     }
-    return `v${(0, moment_1.default)().utc().format('YYYYMMDD').toString()}${sha.substr(0, 7)}`;
+    return `v${(0, moment_1.default)().utc().format('YYYYMMDD').toString()}-${sha.substring(0, 7)}`;
 }
 exports.getVersionFromCommitSha = getVersionFromCommitSha;
 function setupVersion(customizedVersion, githubRefType, githubRef, githubSha) {

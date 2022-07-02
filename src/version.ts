@@ -29,7 +29,10 @@ export function getVersionFromCommitSha(sha: string): string | undefined {
   if (!sha || sha.trim().length === 0) {
     return undefined
   }
-  return `v${moment().utc().format('YYYYMMDD').toString()}${sha.substr(0, 7)}`
+  return `v${moment().utc().format('YYYYMMDD').toString()}-${sha.substring(
+    0,
+    7
+  )}`
 }
 
 export function setupVersion(
